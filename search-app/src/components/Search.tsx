@@ -11,19 +11,18 @@ interface State {
 export class Search extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = {
-      searchTerm: localStorage.getItem('searchTerm') || '',
-    };
+    this.state = { searchTerm: localStorage.getItem('searchTerm') || '' };
   }
 
   private handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     this.setState({ searchTerm: event.target.value });
   };
 
-  private handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  private handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    this.props.onSearch(this.state.searchTerm);
-    localStorage.setItem('searchTerm', this.state.searchTerm);
+    const trimmedTerm = this.state.searchTerm.trim();
+    localStorage.setItem('searchTerm', trimmedTerm);
+    this.props.onSearch(trimmedTerm);
   };
 
   public render(): ReactNode {

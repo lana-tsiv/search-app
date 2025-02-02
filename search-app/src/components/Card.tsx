@@ -9,7 +9,7 @@ interface Props {
 export class Card extends Component<Props> {
   public render(): ReactNode {
     const { name, url } = this.props.pokemon;
-    const id = url.split('/')[6];
+    const id = url.split('/')[6] || 'unknown';
     const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
 
     return (

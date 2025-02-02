@@ -41,7 +41,7 @@ export class Main extends Component<object, State> {
       }
 
       const data: PokemonApiResponse = await response.json();
-      let filteredResults = data.results;
+      let filteredResults = Array.isArray(data.results) ? data.results : [];
 
       if (searchTerm) {
         filteredResults = data.results.filter((pokemon) =>
@@ -64,8 +64,10 @@ export class Main extends Component<object, State> {
     return (
       <main className="container mx-auto">
         <Search onSearch={this.fetchPokemons} />
-        <ErrorButton />
         <CardList pokemons={pokemons} loading={loading} error={error} />
+        <div className="p-4">
+          <ErrorButton />
+        </div>
       </main>
     );
   }

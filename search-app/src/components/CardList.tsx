@@ -15,18 +15,18 @@ export class CardList extends Component<Props> {
   public render(): ReactNode {
     const { pokemons, loading, error } = this.props;
 
-    if (loading) {
-      return (
-        <div className="flex justify-center items-center p-8">
-          <Loader2 className="animate-spin-slow h-8 w-8 text-blue-600" />
-        </div>
-      );
-    }
-
     if (error) {
       return (
         <div className="p-4 bg-red-50 border border-red-200 rounded-md">
           <p className="text-red-600">Error: {error}</p>
+        </div>
+      );
+    }
+
+    if (loading) {
+      return (
+        <div className="flex justify-center items-center p-8">
+          <Loader2 className="animate-spin-slow h-8 w-8 text-blue-600" />
         </div>
       );
     }
