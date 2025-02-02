@@ -28,7 +28,7 @@ export class Main extends Component<object, State> {
     this.fetchPokemons(savedTerm);
   }
 
-  private fetchPokemons = async (searchTerm: string = ''): Promise<void> => {
+  private fetchPokemons = async (searchTerm: string): Promise<void> => {
     this.setState({ loading: true, error: null });
 
     try {
@@ -59,11 +59,13 @@ export class Main extends Component<object, State> {
   };
 
   public render(): ReactNode {
+    const { pokemons, loading, error } = this.state;
+
     return (
       <main className="container mx-auto">
         <Search onSearch={this.fetchPokemons} />
         <ErrorButton />
-        <CardList pokemons={this.state.pokemons} />
+        <CardList pokemons={pokemons} loading={loading} error={error} />
       </main>
     );
   }
