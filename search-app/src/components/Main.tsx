@@ -2,7 +2,7 @@ import { Component, ReactNode } from 'react';
 
 import { Search } from './Search';
 import { ErrorButton } from './ErrorButton';
-// import { CardList } from './CardList';
+import { CardList } from './CardList';
 
 export class Main extends Component {
   private handleSearch = (query: string) => {
@@ -14,7 +14,7 @@ export class Main extends Component {
       <main className="container mx-auto">
         <Search onSearch={this.handleSearch} />
         <ErrorButton />
-        {/* <CardList /> */}
+        <CardList />
       </main>
     );
   }
